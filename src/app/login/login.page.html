@@ -1,0 +1,62 @@
+
+<ion-content [fullscreen]="true" class="login-content">
+
+  <div class="login-container">
+
+    <div class="brand-section">
+      <h1>FunCooking</h1>
+    </div>
+
+    <div class="welcome-section">
+      <h2>Bem-vindo!</h2>
+      <p>Iniciar Sessão para Continuar</p>
+    </div>
+
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="login()"
+      class="login-form">
+
+      <div class="input-container">
+        <ion-input
+          type="email"
+          formControlName="email"
+          placeholder="Email"
+          autocomplete="email">
+        </ion-input>
+      </div>
+
+      <div class="input-container">
+        <ion-input
+          type="password"
+          formControlName="password"
+          placeholder="Palavra-passe"
+          autocomplete="current-password">
+        </ion-input>
+      </div>
+
+      <div class="error-message" *ngIf="loginError">
+        {{ loginError }}
+      </div>
+
+      <ion-button
+        type="submit"
+        expand="block"
+        class="login-button">
+        Iniciar Sessão
+      </ion-button>
+
+    </form>
+
+    <div class="register-section">
+      <p>Ainda não tem uma conta?</p>
+
+      <a routerLink="/register">
+        Criar Conta
+      </a>
+    </div>
+
+  </div>
+
+</ion-content>
+s

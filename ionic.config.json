@@ -1,0 +1,7 @@
+{
+  "name": "FunCooking",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
