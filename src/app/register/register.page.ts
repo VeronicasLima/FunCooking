@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
+import { HttpClient,HttpErrorResponse} from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +14,11 @@ export class RegisterPage implements OnInit {
     registerForm!:FormGroup;
     registerError:string ='';
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private router:Router
+  ) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -36,18 +42,34 @@ export class RegisterPage implements OnInit {
 
   register() {
 
-    this.registerError = '';
-
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
-
-      this.registerError =
-        'Verifica os dados introduzidos.A palavra-passe deve ter pelo menos 6 carateres.';
-
-        return;
+      return;
     }
 
-    this.registerError =
-      'O registo ainda não está disponível.';
+      this.registerError = '';
+        
+   const dados = this.registerForm.value;
+
+   this.http.post<any>(
+      'http://localhost:3000/registar',
+      dados
+).subscribe({
+  next: (resposta) => {
+    console.log('Registo realizado: ',resposta);
+
+    alert('Conta criada com sucesso!');
+
+    this.router.navigate(['/login']);
+  },
+
+  error: (erro:HttpErrorResponse) => {
+    console.error('Erro no registo:',erro);
+
+    this.registerError=
+    erro.error?.mnesagem ||
+      'Não foi possível criar a conta.Tenta novamente.';
+  }
+});
   }
 }

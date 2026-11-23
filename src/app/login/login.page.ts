@@ -1,6 +1,7 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient,HttpErrorResponse } from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,12 +9,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.page.scss'],
   standalone: false
 })
+
 export class LoginPage implements OnInit {
 
   loginForm!: FormGroup;
   loginError: string = '';
+  isLoading: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit() {
 
@@ -44,8 +51,42 @@ export class LoginPage implements OnInit {
       return;
     }
 
-    this.loginError =
-      'Autenticação ainda não disponível.';
+    if (this.isLoading) {
+      return;
+    }
 
+    this.isLoading = true;
+
+    this.http.post<{
+      mensagem: String;
+      utilizador: {
+        id_utilizador: String;
+        nome: string;
+        email:string;
+        tipo_utilizador:string;
+      };
+    }>(
+      'http://localhost:3000/login',
+      this.loginForm.value
+    ).subscribe({
+
+      next: (resposta) => {
+        this.isLoading = false;
+
+        if (resposta.utilizador.tipo_utilizador == 'administrador'){
+          this.router.navigate(['/administrador']);
+        } else {
+          this.router.navigate(['/tabs/inicio']);
+        }
+      },
+
+      error: (erro: HttpErrorResponse) => {
+        this.isLoading = false;
+
+        this.loginError =
+        erro.error?.mensagem || 'Não foi possível iniciar sessão. Tente novamente. ';
+      }
+    });
   }
 }
+

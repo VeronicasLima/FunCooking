@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defautHref="/administrador"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>gerir-utilizadores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="utilizadores-content">
+
+  <div class="utilizadores-container">
+
+    <h2>Gerir Utilizadores</h2>
+
+    <p> Utilizadores registados no FunCooking</p>
+
+    <ion-list>
+
+      <ion-item *ngfor="let utilizador of utilizadores">
+
+        <ion-label>
+          <h3>{{ utilizador.nome}}</h3>
+          <p>{{ utilizador.email}}</p>
+          <p>{{ utilizador.tipo_utilizador}}</p>
+        </ion-label>     
+
+      </ion-item>
+
+    </ion-list>
+
+  </div >
+</ion-content>

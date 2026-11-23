@@ -26,16 +26,34 @@ const routes: Routes = [
   },
 
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+    path: 'administrador',
+    loadChildren: () => import('./administrador/administrador.module').then( m => m.AdministradorPageModule)
   },
+  {
+    path: 'gerir-utilizadores',
+    loadChildren: () => import('./gerir-utilizadores/gerir-utilizadores.module').then( m => m.GerirUtilizadoresPageModule)
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+  {
+    path: 'receitas',
+    loadChildren: () => import('./receitas/receitas.module').then( m => m.ReceitasPageModule)
+  },
+  {
+    path: 'criar-receita',
+    loadChildren: () => import('./criar-receita/criar-receita.module').then( m => m.CriarReceitaPageModule)
+  },
+
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules
+    })
   ],
   exports: [RouterModule]
 })
-
-export class AppRoutingModule { }
+export class AppRoutingModule {}

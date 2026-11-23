@@ -1,0 +1,63 @@
+<ion-content class="criar-content">
+  
+  <div class="criar-container">
+
+    <div class="brand-section">
+      <h1>FunCooking</h1>
+      <h2>Criar Receita</h2>
+  </div>
+
+  <form class="receita-form">
+
+    <div class="campo">
+      <label>Nome da Receita</label>
+      <ion-input
+        type="text"
+        placeholder="ex.: Arroz com Frango">
+      </ion-input>
+    </div>
+
+    <div class="campo">
+      <label>Ingredientes</label>
+      <ion-textarea
+        rows="4"
+        placeholder="Introduza os ingredientes....">
+      </ion-textarea>
+    </div>
+
+    <div class="campo">
+      <label>Modo de Preparação</label>
+      <ion-textarea
+        rows="5"
+        placeholder="Detalhes da Receita....">
+      </ion-textarea>
+    </div>
+
+    <div class="campo">
+      <label>Tempo de Preparação (minutos)</label>
+      <ion-input
+        type="number"
+        placeholder="Ex.: 45 minutos">
+      </ion-input>
+    </div>
+
+    <ion-button
+      expand="block"
+      type="button"
+      class="guardar-btn">
+        Guardar Receita
+    </ion-button>
+
+ <ion-button
+      expand="block"
+      files="outline"
+      class="voltar-btn"
+      routerLink="/receitas">
+        Voltar
+    </ion-button>
+
+    </form>
+
+  </div>
+
+    </ion-content>

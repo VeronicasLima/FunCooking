@@ -1,0 +1,49 @@
+<ion-content class="administrador-content">
+
+  <div class="administrador-container">
+
+    <div class="brand-section">
+      <h1>FunCooking</h1>
+    </div>
+
+    <div class="welcome-section">
+      <h2>Administração</h2>
+      <p>Olá Admin!</p>
+    </div>
+
+    <div class="administrador-menu">
+
+      <ion-button
+        expand="block"
+        routerLink="/gerir-utilizadores">
+      Gerir Utilizadores
+    </ion-button>
+
+    <ion-button
+      expand="block"
+      routerLink="/administrador/receitas">
+      Gerir Receitas
+    </ion-button>
+
+    <ion-button
+      expand="block"
+      routerLink="/administrador/conteudos">
+      Gerir Conteudos
+    </ion-button>
+
+    </div>
+
+
+    <ion-button
+      expand="block"
+      class="logout-button"
+      (click)="logout()">
+      Terminar Sessão
+    </ion-button>
+
+
+  </div>
+
+
+</ion-content>
+

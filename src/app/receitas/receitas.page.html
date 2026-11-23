@@ -1,0 +1,65 @@
+<ion-content class="receitas-content">
+
+  <div class="receitas-container">
+
+    <div class="brand-section">
+      <h1>FunCooking</h1>
+      <h2>Rceitas</h2>
+    </div>
+
+    <div class="receitas-menu">
+
+      <ion-button
+        expand="block"
+        class="pesquisar-btn"
+        routerLink="/tabs/pesquisar">
+      
+      <ion-icon
+      name="search-outline"
+      slot="start">
+      </ion-icon>
+
+      Pesquisar Receitas
+      </ion-button>
+
+      <div class="receita-card">
+        <ion-icon name="restaurant-outline"></ion-icon>
+        <span>Strogonoff</span>
+      </div>
+
+      <div class="receita-card">
+        <ion-icon name="restaurant-outline"></ion-icon>
+        <span>Frango Grelhado</span>
+      </div>
+
+      <div class="receita-card">
+        <ion-icon name="restaurant-outline"></ion-icon>
+        <span>Salmão Grelhado </span>
+      </div>
+
+      <ion-button
+        expand="block"
+        class="criar-btn"
+        routerLink="/criar-receita">
+
+        <ion-icon
+          name="add-outline"
+          slot="start">
+        </ion-icon>
+
+        Criar Receita
+      </ion-button>
+
+      <ion-button
+        expand="block"
+        fill="outline"
+        class="voltar-btn"
+        routerLink="/tabs/inicio">
+            Voltar
+      </ion-button>
+
+    </div>
+
+  </div>
+
+</ion-content>
