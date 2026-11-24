@@ -1,0 +1,7 @@
+node_modules
+.angular
+www
+dist
+.git
+.env
+npm-debug.log 

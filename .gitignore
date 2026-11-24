@@ -69,4 +69,16 @@ testem.log
 .DS_Store
 Thumbs.db
 
-backend/.envs
+# Variáveis de ambiente
+.env
+**/.env
+
+# Dependências
+**/node_modules/
+
+# Ficheiros gerados pelo Angular e Ionic
+**/.angular/
+**/www/
+**/dist/
+**/out-tsc/
+**/.ionic/

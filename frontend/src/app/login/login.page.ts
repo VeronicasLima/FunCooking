@@ -46,6 +46,7 @@ export class LoginPage implements OnInit {
 
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
+
       this.loginError =
         'Verifica o email e a palavra-passe introduzidos.';
       return;
@@ -60,11 +61,12 @@ export class LoginPage implements OnInit {
     this.http.post<{
       mensagem: String;
       utilizador: {
-        id_utilizador: String;
+        id_utilizador: number;
         nome: string;
         email:string;
         tipo_utilizador:string;
       };
+
     }>(
       'http://localhost:3000/login',
       this.loginForm.value
@@ -73,8 +75,14 @@ export class LoginPage implements OnInit {
       next: (resposta) => {
         this.isLoading = false;
 
+        localStorage.setItem(
+          'utilizador',
+          JSON.stringify(resposta.utilizador)
+        );
+
         if (resposta.utilizador.tipo_utilizador == 'administrador'){
           this.router.navigate(['/administrador']);
+          
         } else {
           this.router.navigate(['/tabs/inicio']);
         }

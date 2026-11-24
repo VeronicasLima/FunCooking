@@ -1,0 +1,148 @@
+<ion-content class="criar-content">
+  
+  <div class="criar-container">
+
+    <div class="brand-section">
+      <h1>FunCooking</h1>
+      <h2>Criar Receita</h2>
+  </div>
+
+  <form class="receita-form">
+
+   <ion-input
+    class="campo"
+    type="text"
+    placeholder="Nome da Receita"
+    [(ngModel)]="nome"
+    name="nome">
+  </ion-input>
+
+  <ion-input
+    class="campo"
+    type="number"
+    min="1"
+    placeholder="N.º de Pessoas"
+    [(ngModel)] ="numeroPessoas"
+    name="numeroPessoas">
+  </ion-input>
+
+  <div class="ingrediente-grupo"
+      *ngFor="let ingrediente of ingredientes;let i =index">
+
+  <ion-input
+    class="campo"
+    type="text"
+    placeholder="Ingrediente"
+    [(ngModel)]="ingrediente.nome"
+    name="ingrediente {{i}}">
+  </ion-input>
+
+  <div class="quantidade-unidade">
+
+    <ion-input
+    class="campo"
+    type="number"
+    min="0"
+    placeholder="Quantidade"
+    [(ngModel)]="ingrediente.quantidade"
+    name="quantidade {{i}}">
+  </ion-input>
+
+  <ion-select 
+    class="campo"
+    placeholder="Unidade"
+    [(ngModel)]="ingrediente.unidade"
+    name="unidade {{i}}">
+
+    <ion-select-option value="g">g</ion-select-option>
+    <ion-select-option value="kg">kg</ion-select-option>
+    <ion-select-option value="ml">ml</ion-select-option>
+    <ion-select-option value="l">L</ion-select-option>
+    <ion-select-option value="un">Un</ion-select-option>
+  
+  </ion-select>
+
+  </div>
+
+  <ion-button
+    *ngIf="ingredientes.length > 1"
+    fill="clear"
+    type="button"
+    class="remover-btn"
+    (click)="removerIngrediente(i)">
+
+    <ion-icon
+      name="trash-outline"
+      slot="start">
+    </ion-icon>
+
+  </ion-button>
+
+  </div>
+
+  <ion-button
+    fill="clear"
+    type="button"
+    class="adicionar-btn"
+    (click)="adicionarIngrediente()">
+
+     +Adicionar Ingrediente
+  </ion-button>
+
+  <ion-textarea
+    class="preparacao"
+    rows="4"
+    placeholder="Preparação"
+    [(ngModel)]="preparacao"
+    name="preparacao">
+  </ion-textarea>
+
+  <label class="fotografia">
+
+    <ion-icon name="camera-outline"></ion-icon>
+
+    <span translate="no">+ Adicionar Fotografia</span>
+
+    <input 
+    type="file" 
+    accept="image/*" 
+    (change)="selecionarFotografia($event)"
+    hidden>
+
+  </label>
+
+  <img
+    *ngIf="fotografia"
+    [src]="fotografia"
+    class="fotografia-preview"
+    alt="Fotografia da Receita">
+
+  <ion-button
+    expand="block"
+    type="button"
+    class="guardar-btn"
+    (click)="guardarReceita()">
+
+      + Guardar Receita
+  </ion-button>
+
+  <ion-button 
+    fill="clear"
+    type="button"
+    class="voltar-btn"
+    routerLink="/receitas">
+
+    <ion-icon
+      name="arrow-back-outline"
+      slot="start">
+    </ion-icon>
+
+      Voltar
+
+    </ion-button>
+
+    </form>
+
+    </div>
+  
+</ion-content>

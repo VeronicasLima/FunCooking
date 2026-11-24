@@ -1,0 +1,123 @@
+.criar-content {
+    --background:#e0e0e0;
+}
+
+.criar-container {
+    min-height: 100%;
+    width: 100%;
+    padding: 30px 20px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-section {
+    text-align: center;
+    margin-bottom: 20px;
+
+    h1 {
+        font-size: 30px;
+        font-weight: 700;
+        font-style: italic;
+        color: #222;
+        margin-bottom: 5px;
+    }
+
+    h2 {
+        font-size: 23px;
+        font-weight: 500;
+        color: #333;
+        margin-top: 5px;
+    }
+}
+
+.receita-form {
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.campo {
+   background: #c6d0d9;
+   border-radius: 30px;
+   min-height: 50px;
+   width: 100%;
+   box-sizing: border-box;
+
+   --color:#222;
+   --placeholder-color: #333;
+   --placeholder-opacity: 1;
+   --padding-start: 15px;
+
+   text-align: center;
+    }
+
+.quantidade-unidade {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 10px;
+}
+
+.adicionar-btn {
+    --color:#222;
+    font-size: 15px;
+    text-transform: none;
+    letter-spacing: 0;
+    margin: 0;
+}
+
+.preparacao {
+    background: #c6d0d9;
+    border-radius: 20px;
+
+    --color: #222;
+    --placeholder-color:#333;
+    --placeholder-opacity: 1;
+    --padding-start: 15px;
+    --padding-end: 15px;
+    --padding-top: 15px;
+    --padding-bottom: 15px;
+}
+
+.fotografia {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color:#222;
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+
+    ion-icon {
+        font-size: 28px;
+    }
+}
+
+.guardar-btn {
+    --background: linear-gradient(120deg, #b4f5d3, #93b8ff);
+    --color:#222;
+    --border-radius:20px;
+    --box-shadow: none;
+
+    height: 55px;
+    width: 80%;
+    align-self: center;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 600;
+}
+
+.voltar-btn {
+    --color: #222;
+    
+    text-transform: nome;
+    letter-spacing: 0;
+    font-size: 16px;
+    margin: 0;
+}

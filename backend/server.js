@@ -152,6 +152,60 @@ app.post('/login', async (req, res) => {
     }
 });
 
+app.post('/receitas',async (req, res) => {
+
+    try {
+        const {
+            id_utilizador,
+            nome,
+            numero_pessoas,
+            conteudo,
+            fotografia
+        } = req.body;
+
+        if (
+            !Number.isInteger(id_utilizador) ||
+            id_utilizador <= 0 ||
+            typeof nome !== 'string' ||
+            !nome.trim() ||
+            !Number.isInteger(numero_pessoas) ||
+            numero_pessoas <= 0 ||
+            typeof conteudo !== 'string' ||
+            !conteudo.trim()
+        ) {
+            return res.status(400).json ({
+                mensagem: 'Prenche todos os campos obrigatorios.'
+            });
+        }
+
+       
+const resultado = await pool.query(
+    'INSERT INTO receita (id_utilizador, nome, numero_pessoas, conteudo, fotografia, data_criacao) VALUES ($1, $2, $3, $4, $5, NOW()) RETURNING *',
+    [
+        id_utilizador,
+        nome.trim(),
+        numero_pessoas,
+        conteudo.trim(),
+        fotografia || null
+    ]
+);
+
+
+        res.status(201).json({
+            mensagem: 'Reeceita guardada com sucesso!',
+            receita: resultado.rows[0]
+        });
+    
+    } catch (erro) {
+        console.error('Erro ao guardar receita:',erro);
+
+        res.status(500).json({
+            mensagem: 'Erro ao guardar receita.'
+        });
+    }
+
+});
+
 app.listen (PORT, () => {
     console.log('Servidor a funcionar na porta ' + PORT);
 });

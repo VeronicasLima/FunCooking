@@ -1,0 +1,44 @@
+services:
+  database:
+    image: postgres:18
+    container_name: funcooking_database
+    environment:
+      POSTGRES_DB: FunCooking
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d FunCooking"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    container_name: funcooking_backend
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: FunCooking
+    depends_on:
+      database:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: funcooking_frontend
+    ports:
+      - "127.0.0.1:8100:8100"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
